@@ -1,8 +1,8 @@
 import functools
 import sys
 import psutil
-from memory_profiler import profile
-from memory_profiler import memory_usage
+#from memory_profiler import profile
+from memory_profiler import memory_usage, profile
 
 # измерение использования памяти (возможность выбора для декоратора):
 # 1. sys.getsizeof(),

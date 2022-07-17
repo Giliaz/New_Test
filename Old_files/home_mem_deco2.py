@@ -7,7 +7,7 @@ import sys
 # 3. @profile from memory_profiler. (закомменченно)
 
 # 3) декоратор memory_profiler, выводит таблицу используемой памяти декоратором test_mem(f): (для использования раскомментить)
-#@profile
+# @profile
 def test_mem(f):
     @functools.wraps(f)
     def deco(*args, **kwargs):
@@ -15,6 +15,7 @@ def test_mem(f):
         # измерение и вывод используемой памяти при помощи системной функции sys.getsizeof()
         mem_getsize = sys.getsizeof(f)
         print(f'1) Working sys.getsizeof() in decorator. Usage memory:', mem_getsize)
+
         # рекурсивная get_size функция измерение в используемой памяти c GitHub
         def get_size(obj, seen=None):
             # From https://goshippo.com/blog/measure-real-size-any-python-object/
@@ -36,17 +37,20 @@ def test_mem(f):
             elif hasattr(obj, '__iter__') and not isinstance(obj, (str, bytes, bytearray)):
                 size += sum([get_size(i, seen) for i in obj])
             return size
+
         print('2) Working recursion function from GitHub in decorator. Usage memory:', get_size(f))
         return result
+
     return deco
+
 
 # декоратор функции memory_test():
 @test_mem
 # 3) декоратор memory_profiler, выводит таблицу используемой памяти функцией memory_test(): (для использования раскомментить)
-#@profile
+# @profile
 def memory_test():
-    test_list = [i**2 for i in range(100)]
+    test_list = [i ** 2 for i in range(100)]
     return test_list
 
 memory_test()
-#print(f'Print returned arguments from ({memory_test.__name__}): {memory_test()} \n')
+# print(f'Print returned arguments from ({memory_test.__name__}): {memory_test()} \n')
