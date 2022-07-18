@@ -8,6 +8,7 @@ flask = "*"
 requests = "*"
 psutil = "*"
 memory-profiler = "*"
+pipenv = "*"
 
 [dev-packages]
 
